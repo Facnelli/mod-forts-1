@@ -3,6 +3,22 @@
 -- vanilla Energy Shield with the automatic opening behaviour of a Door.
 
 local ENERGY_DOOR_SAVE_NAME = "energydoor"
+local ENERGY_DOOR_CONTEXT_SPRITE = "context-energydoor"
+
+-- Dedicated HUD/context icon. ButtonSprite automatically loads the
+-- -A/-D/-R/-S texture variants from ui/textures/context.
+table.insert(
+    Sprites,
+    ButtonSprite(
+        ENERGY_DOOR_CONTEXT_SPRITE,
+        "context/HUD-Buttons-EnergyDoor",
+        nil,
+        nil,
+        nil,
+        nil,
+        path
+    )
+)
 
 local function FindMaterialBySaveName(saveName)
     for _, material in ipairs(Materials) do
@@ -102,10 +118,11 @@ local function ApplyDoorBehaviour(material, door, shield)
     material.CollidesWithFriendlyBeams = shield.CollidesWithFriendlyBeams
     material.CollidesWithWind = shield.CollidesWithWind
 
-    -- Reuse the shield's HUD assets.
+    -- Keep the shield detail/selection effects, but use a dedicated
+    -- conversion/HUD button so the material is visually distinct.
     material.Icon = shield.Icon
     material.Detail = shield.Detail
-    material.Context = shield.Context
+    material.Context = ENERGY_DOOR_CONTEXT_SPRITE
     material.SelectEffect = shield.SelectEffect
 
     material.Enabled = true
