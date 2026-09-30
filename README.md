@@ -38,13 +38,22 @@ Place a weapon behind the Energy Door and aim through it.
 - When the weapon behind it is aimed/fired through the link, Forts should treat the material as a door and open it automatically.
 - After firing, Forts' normal door logic should close it again.
 
-## Current visual approach
+## Visuals and localisation
 
-The material uses the normal door rail/cap sprites and the Energy Shield sprite as the moving foreground leaf. This is intentional for version 0.1: it lets us validate gameplay before adding custom textures.
+Version 0.2 adds a dedicated material button inspired by both vanilla components: steel door rails/hazard markings around a bright electric field. The icon is stored as the normal Forts `ButtonSprite` state set under `ui/textures/context/`.
+
+The in-world material still uses the normal door rail/cap sprites and the Energy Shield sprite as the moving foreground leaf, preserving the already validated opening/reflection behaviour.
+
+The material now includes display strings for Brazilian Portuguese and English:
+
+- **Porta de Escudo** — Brazilian Portuguese;
+- **Shield Door** — English.
+
+The strings are provided under each `language-*/devices/strings.lua` hierarchy, matching Forts' localisation system for material/device names and tooltips.
 
 ## Balance
 
-Version 0.1 inherits the **current vanilla Energy Shield** values at load time, including:
+The gameplay balance inherits the **current vanilla Energy Shield** values at load time, including:
 
 - hit points;
 - metal/energy build and repair costs;
